@@ -1,5 +1,8 @@
 # Good Coding Guidlines
 
+This document captures practical, battle‑tested coding principles with simple JS examples.\
+**The goal**: code that is easy to read, reason about, test, and maintain. These pricinples are not scoped to js/react/nodejs, they can be extended into any production grade software you are buidling with any language, framework or library.
+
 ## 1. Early Exit
 
 **Idea:** Handle invalid or edge cases first and exit early. Avoid deep nesting.
@@ -220,12 +223,150 @@ try {
 
 ---
 
+## 7. Determinism Over Pragmatism
+
+Prefer code that behaves the same way every time over code that “usually works.”
+
+Pragmatic shortcuts feel productive today.
+Non-deterministic behavior punishes you in production.
+
+---
+
+### What Determinism Means in Code
+
+Deterministic code:
+
+* produces the **same output** for the same input
+* fails in **predictable, explainable ways**
+* is easier to **test, debug, and reason about**
+
+Pragmatic-but-sloppy code:
+
+* depends on timing
+* depends on hidden state
+* depends on “it should be fine”
+
+---
+
+### Pragmatic (But Dangerous)
+
+```js
+let cachedUser;
+
+function getUser() {
+  if (!cachedUser) {
+    cachedUser = fetchUserFromDB();
+  }
+  return cachedUser;
+}
+```
+
+**What’s wrong:**
+
+* Hidden global state
+* Order-dependent behavior
+* Impossible to reason about in isolation
+
+---
+
+### Deterministic (Explicit State)
+
+```js
+function getUser(userId, cache) {
+  if (cache.has(userId)) {
+    return cache.get(userId);
+  }
+
+  const user = fetchUserFromDB(userId);
+  cache.set(userId, user);
+  return user;
+}
+```
+
+**Why it’s better:**
+
+* Inputs are explicit
+* Behavior is predictable
+* Easy to test with a fake cache
+
+---
+
+### Another Classic Example: Time
+
+#### Pragmatic
+
+```js
+function isOfferValid() {
+  return Date.now() < OFFER_EXPIRY;
+}
+```
+
+Good luck testing that.
+
+#### Deterministic
+
+```js
+function isOfferValid(now) {
+  return now < OFFER_EXPIRY;
+}
+```
+
+Time is now a dependency — not a surprise.
+
+---
+
+### Determinism in Error Handling
+
+#### Pragmatic
+
+```js
+try {
+  doSomething();
+} catch {
+  // let's ignore it for now
+}
+```
+
+This creates **random behavior later**.
+
+#### Deterministic
+
+```js
+try {
+  doSomething();
+} catch (e) {
+  logger.error(e);
+  throw e;
+}
+```
+
+Fail loudly. Fail predictably.
+
+---
+
+### When Pragmatism Wins (Yes, Exceptions Exist)
+
+* quick prototypes
+* throwaway scripts
+* experiments with a short lifespan
+
+But once code enters **shared ownership** or **production**, determinism wins.
+
+---
+
+### The Rule in One Line
+
+> **Predictable failures beat unpredictable success.**
+
+---
+
 ## Final Thought
 
-> **Every Rule Has an Exception (Yes, Even This One)**;
+> **Every Rule Has an Exception (Yes, Even These)**\
 > **Good code is not clever code.**
-> It’s obvious and readable — and honest when it fails.
+> It’s obvious and readable — and honest when it fails.\
+> <ins>Write code for humans first. Machines will manage<ins>.
 
-Write code for humans first. Machines will manage.
+
 
 
