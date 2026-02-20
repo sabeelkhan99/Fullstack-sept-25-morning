@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        // fetch('http://abc.com',{
+        //     method:'POST',
+        //     body: JSON.stringify(data),
+        //     headers: {
+
+        //     }
+        // })
+    </script>
+</head>
+<body>
+
+    <h1>GET vs POST</h1>
+
+    <h2>GET</h2>
+
+    <form action="/user" method="get">
+        <label for="username">Username</label>
+        <input type="text" placeholder="username" id="username" name="username">
+
+        <label for="age">Age</label>
+        <input type="text" placeholder="age" id="age" name="age">
+
+        <button type="submit">Submit</button>
+    </form>
+
+     <h2>POST</h2>
+
+    <form action="/user" method="post">
+        <label for="username">Username</label>
+        <input type="text" placeholder="username" id="username" name="username">
+
+        <label for="age">Age</label>
+        <input type="text" placeholder="age" id="age" name="age">
+
+        <button type="submit">Submit</button>
+    </form>
+    
+</body>
+</html>
