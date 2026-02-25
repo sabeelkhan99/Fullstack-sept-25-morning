@@ -18,4 +18,6 @@ router.patch('/:id', updateAMovie);
 // DELETE a movie
 router.delete('/:id', deleteAMovie);
 
+console.log(router);
+
 module.exports = router;

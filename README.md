@@ -367,6 +367,9 @@ But once code enters **shared ownership** or **production**, determinism wins.
 > It’s obvious and readable — and honest when it fails.\
 > <ins>Write code for humans first. Machines will manage<ins>.
 
+### Important Links
+    REST APIs Good Coding Practices - [text](https://www.freecodecamp.org/news/rest-api-design-best-practices-build-a-rest-api/#heading-document-your-api-properly)
+
 
 
 
