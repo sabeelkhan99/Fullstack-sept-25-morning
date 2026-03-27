@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://cdn.socket.io/4.8.3/socket.io.min.js"></script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+
+</head>
+
+<body>
+
+    <section style="width: 400px;" class="border p-3 mx-auto mt-5">
+        <h1>Web Sockets Demo</h1>
+        <section id="login-section">
+            <form id="login-form">
+                <label class="form-label mb-3" for="username">Username</label>
+                <input class="form-control mb-3" type="text" placeholder="Enter username" required>
+                <button class="btn btn-dark btn-sm">Submit</button>
+            </form>
+        </section>
+        <section id="chat-section">
+            <section id="messages-section">
+            </section>
+            <form id="message-form">
+                <label class="form-label mb-3" for="message">Type your message</label>
+                <textarea class="form-control mb-3" id="" cols="30" rows="3" placeholder="Type your message"></textarea>
+                <button class="btn btn-dark btn-sm mb-3">Send</button>
+            </form>
+        </section>
+    </section>
+
+    <script src="./script.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI"
+        crossorigin="anonymous"></script>
+</body>
+
+</html>
